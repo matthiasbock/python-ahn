@@ -3,7 +3,7 @@
    * [ScreenshotsFChronik Screenshots]
    * [Specification File Format Specification]
  * Dirk Böttcher's Ahnenblatt
-   * [ScreenshotsAhnentafel Screenshots]
+   * [ScreenshotsAhnenblatt Screenshots]
    * [Specification2 File Format Specification]
  * Howto
    * [CSV Convert to CSV]

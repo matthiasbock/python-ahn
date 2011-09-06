@@ -2,4 +2,4 @@
 
 = .AHN File Format Specification =
 
-follows ...
+The _Databecker Familienchronik_ family tree software uses a proprietary file format to save it's genealogy data.

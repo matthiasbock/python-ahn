@@ -1,8 +1,10 @@
-#summary File Format Specification
+#summary Data Becker File Format Specification
 
-= .AHN File Format Specification =
+= Data Becker FChronik - File Format Specification =
 
-The _Databecker Familienchronik_ family tree software uses a proprietary file format to save it's genealogy data.
+<img src="http://python-ahn.googlecode.com/svn/trunk/screenshot.jpg"/>
+
+The _Data Becker Familienchronik_ family tree software uses a proprietary file format to save it's genealogy data.
 
 The file starts with four magic bytes, followed by datasets, one dataset per person.
  * 04 bytes: magic <0x01> <0x00> <0x00> <0x00>

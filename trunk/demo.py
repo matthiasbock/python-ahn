@@ -3,7 +3,7 @@
 
 import FChronik
 
-weber = FChronik.ahn("weber.ahn")
+weber = FChronik.ahn("FChronik/weber.ahn")
 
 print str(len(weber.datasets))+" datasets"
 

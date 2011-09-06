@@ -1,0 +1,42 @@
+#summary Data Becker File Format Specification
+
+= Data Becker FChronik - File Format Specification =
+
+The _Data Becker Familienchronik_ family tree software uses a proprietary file format to save it's genealogy data.
+
+The file starts with four magic bytes, followed by datasets, one dataset per person.
+ * 04 bytes: magic <0x01> <0x00> <0x00> <0x00>
+
+One dataset consist of exactly 1100 bytes each. Encoding is standard ASCII. Explicit qualifiers, e.g. the gender, are german.
+ * 20 bytes: last name, aligned right
+ * 20 bytes: last name
+ * 20 bytes: first name
+ * 20 bytes: first name
+ * 10 bytes: spaces?
+ * 10 bytes: date, represented with ASCII digits as *DD.MM.YYYY*
+ * 30 bytes: town, aligned left
+ * 10 bytes: spaces?
+ * 10 bytes: date
+ * 30 bytes: town
+ * 08 bytes: gender, either *weiblich* (female) or *männlich* (male)
+ * 12 bytes: religious denomination, aligned left, e.g. *evangelisch* or *katholisch*
+ * 434 bytes: profession, aligned left
+ * 12 bytes: unknown binary coded information
+ * 10 bytes: date
+ * 30 bytes: town
+ * 76 bytes: unknown binary coded information
+ * 40 bytes: unknown string
+ * 76 bytes: unknown binary coded information
+ * 40 bytes: unknown string
+ * 76 bytes: unknown binary coded information
+ * 40 bytes: unknown string
+ * 76 bytes: unknown binary coded information
+
+All strings are padded with spaces. <0x20>
+Binary encoded information is padded with zeroes. <0x00>
+
+In german special vowels exist, ä, ö and ü, as well as a special s, the ß. Their hexadecimal representations are:
+ * ä <0xE4>
+ * ö <0xF6>
+ * ü <0xFC>
+ * ß <0xDF>

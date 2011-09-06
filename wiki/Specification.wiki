@@ -5,20 +5,38 @@
 The _Databecker Familienchronik_ family tree software uses a proprietary file format to save it's genealogy data.
 
 The file starts with four magic bytes, followed by datasets, one dataset per person.
- * 0-3: magic
+ * 04 bytes: magic <0x01> <0x00> <0x00> <0x00>
 
-One dataset consist of exactly 1100 bytes each. Some qualifiers are german.
- * 20 bytes: last name, aligned right, padded with spaces (0x20)
+One dataset consist of exactly 1100 bytes each. Encoding is standard ASCII. Explicit qualifiers, e.g. the gender, are german.
+ * 20 bytes: last name, aligned right
  * 20 bytes: last name
  * 20 bytes: first name
  * 20 bytes: first name
- * 10 bytes: spaces (0x20)
- * 10 bytes: birthday, ASCII digits: _DD.MM.YYYY_
- * 30 bytes: town of birth
- * 10 bytes: spaces (0x20)
- * 10 bytes: date of death/marriage?
- * 30 bytes: town of death/marriage?
- * 08 bytes: gender, either _weiblich_ (female) or _männlich_ (male)
- * 12 bytes: religious denomination, left aligned, padded with spaces, e.g. _evangelisch_ or _katholisch_
- * profession, left aligned, padded with spaces (0x20)
- * ...
+ * 10 bytes: spaces?
+ * 10 bytes: date, represented with ASCII digits as *DD.MM.YYYY*
+ * 30 bytes: town, aligned left
+ * 10 bytes: spaces?
+ * 10 bytes: date
+ * 30 bytes: town
+ * 08 bytes: gender, either *weiblich* (female) or *männlich* (male)
+ * 12 bytes: religious denomination, aligned left, e.g. *evangelisch* or *katholisch*
+ * 434 bytes: profession, aligned left
+ * 12 bytes: unknown binary coded information
+ * 10 bytes: date
+ * 30 bytes: town
+ * 76 bytes: unknown binary coded information
+ * 40 bytes: unknown string
+ * 76 bytes: unknown binary coded information
+ * 40 bytes: unknown string
+ * 76 bytes: unknown binary coded information
+ * 40 bytes: unknown string
+ * 76 bytes: unknown binary coded information
+
+All strings are padded with spaces. <0x20>
+Binary encoded information is padded with zeroes. <0x00>
+
+In german special characters exist, derived from a, o and u, namely ä, ö and ü, as well as a special s, the ß. Their hexadecimal representation is
+ * ä <0xE4>
+ * ö <0xF6>
+ * ü <0xFC>
+ * ß <0xDF>

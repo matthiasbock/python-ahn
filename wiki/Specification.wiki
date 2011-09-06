@@ -35,7 +35,7 @@ One dataset consist of exactly 1100 bytes each. Encoding is standard ASCII. Expl
 All strings are padded with spaces. <0x20>
 Binary encoded information is padded with zeroes. <0x00>
 
-In german special characters exist, derived from a, o and u, namely ä, ö and ü, as well as a special s, the ß. Their hexadecimal representations are:
+In german special vowels exist, ä, ö and ü, as well as a special s, the ß. Their hexadecimal representations are:
  * ä <0xE4>
  * ö <0xF6>
  * ü <0xFC>

@@ -1,9 +1,9 @@
  * [Roadmap]
  * Data Becker's FChronik
-   * [ScreenshotsFChronik Screenshots]
-   * [Specification File Format Specification]
+   * [FChronikScreenshots Screenshots]
+   * [FChronikSpecification File Format Specification]
  * Dirk Böttcher's Ahnenblatt
-   * [ScreenshotsAhnenblatt Screenshots]
-   * [Specification2 File Format Specification]
+   * [AhnenblattScreenshots Screenshots]
+   * [AhnenblattSpecification File Format Specification]
  * Howto
    * [CSV Convert to CSV]

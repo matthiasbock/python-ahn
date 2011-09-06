@@ -1,0 +1,67 @@
+if DExis(AHN_file)And DExis(Format_AHN)
+then begin
+	AktlGr:=1;
+	Gr:=DGr(AHN_file);
+	s1:='';
+	     While not eof (Format_AHN)
+	     do begin
+		Read(Format_AHN,Ch);
+		Ch:=UpCase(Ch);
+		if ((Ord(Ch)>47)And(Ord(Ch)<58)) Or (Ch='B') Or (Ch='Z'):
+			s1 += Ch;
+		end;
+	Close(Format_AHN);
+	AktlForm:=1;
+	k:=0;
+
+     Meldung('Analyse komplett !','Beginne Umschreibung von '+AHN_file+' .');
+
+     While (AktlGr<Gr)
+     do begin
+        Ch:=UpCase(s1[AktlForm]);
+	AktlForm:=AktlForm+1;
+	s2:='';
+	s3:='';
+        While (AktlForm<=Length(s1))And(Ord(s1[AktlForm])<58)
+        do begin
+		s2:=s2+s1[AktlForm];
+		AktlForm:=AktlForm+1;
+	end;
+        if (Ch='Z')
+        then begin
+             Read(AHN_file,Ch);AktlGr:=AktlGr+1;Str(Ord(Ch),s3);
+             for i:=1 to StrZahl(s2)-1 do
+             begin Read(AHN_file,Ch);AktlGr:=AktlGr+1;end;
+             if (Length(s3)=1)And((s3[1]='0')Or(s3[1]=' '))then s3:='';
+             end else
+        if (Ch='B')
+        then begin
+             for i:=1 to StrZahl(s2)
+             do begin Read(AHN_file,Ch);s3:=s3+Ch;AktlGr:=AktlGr+1;end;
+             end;
+        i:=Length(s3);
+        While (s3[i]=' ')And(i>1)
+        do begin
+           s2:=s3;s3:='';i:=i-1;
+           for j:=1 to Length(s2)-1 do s3:=s3+s2[j];
+           end;
+        for i:=1 to Length(s3)
+        do begin
+           if (Ord(s3[i])=228)then s3[i]:='Ñ';
+           if (Ord(s3[i])=246)then s3[i]:='î';
+           if (Ord(s3[i])=252)then s3[i]:='Å';
+           end;
+        if (Length(s3)=1)And((Ord(s3[1])<49)Or(Ord(s3[1])>160))then s3:='';
+        Write(TXT_file,s3+';');
+        if (AktlForm>=Length(s1))
+        then begin
+             AktlForm:=1;WriteLn(TXT_file,'');k:=k+1;
+             Str(k,s2);Meldung('Familienangehîrige :',s2);
+             end;
+        end;
+
+	Close(AHN_file);
+	Close(TXT_file);
+
+	Meldung('Umschreibung abgeschlossen !',  'Gefundene Daten in '+TXT_file+' gesichert .');
+

@@ -22,12 +22,8 @@ s1:='';
      do begin
 	Read(Format_AHN,Ch);
 	Ch:=UpCase(Ch);
-	if ((Ord(Ch)>47)And(Ord(Ch)<58)) Or (Ch='B') Or (Ch='Z'):
-		s1 += Ch;
+	s1 += Ch;
 	end;
-Close(Format_AHN);
-
-print 'Analyse komplett !'
 
 print 'Beginne Umschreibung von '+AHN_file+' ...'
 

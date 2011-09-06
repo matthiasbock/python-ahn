@@ -1,0 +1,10 @@
+#summary Roadmap
+
+= Roadmap =
+
+== Currently supported ==
+ * conversion to spreadsheet (comma separated values, ".csv")
+
+== Planned ==
+ * python object with import & export capabilities
+ * conversion to GEDCOM

@@ -7,8 +7,8 @@ From python object ...
 
 = Old CSV conversion tool =
 
- * written in Turbo Pascal many years ago
+ * a tool I wrote in Turbo Pascal in 1999
 
 {{{
- $ convert
+ $ convert ...
 }}}

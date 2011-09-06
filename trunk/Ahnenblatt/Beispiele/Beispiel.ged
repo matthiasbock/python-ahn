@@ -1,0 +1,361 @@
+0 HEAD
+1 SOUR AHN
+2 VERS 2.63
+2 NAME Ahnenblatt
+2 CORP Dirk Boettcher
+1 DEST ANSTFILE
+1 DATE 08 FEB 2011
+2 TIME 19:52:59
+1 SUBM @SUBM@
+1 FILE Beispiel.ged
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR ANSI
+2 VERS 1252
+1 _NAVM 2
+2 _NAVI @I6@
+0 @SUBM@ SUBM
+1 NAME Beispieldaten
+1 ADDR Ahnenblatt - Ahnenforschung f¸r Windows
+2 CONT www.ahnenblatt.de
+2 CONT = Daten sind fiktiv =
+0 @I1@ INDI
+1 NAME Martha /.../
+1 SEX F
+1 FAMS @F1@
+0 @I2@ INDI
+1 NAME Bartholom‰us Ferdinand /Beckmann/
+1 SEX M
+1 BIRT
+2 DATE 24 JAN 1791
+2 PLAC Tilsit/Ostpreuﬂen
+1 DEAT
+2 DATE 10 AUG 1853
+2 PLAC Tilsit/Ostpreuﬂen
+1 OCCU Tuchh‰ndler
+1 FAMS @F2@
+1 FAMC @F3@
+0 @I3@ INDI
+1 NAME Karl _Friedrich_ Emanuel /Beckmann/
+1 SEX M
+1 BIRT
+2 DATE ABT 1760
+1 BURI
+2 DATE 13 MAR 1819
+2 PLAC Tilsit/Ostpreuﬂen
+1 OCCU Handelsmann
+1 FAMS @F3@
+0 @I4@ INDI
+1 NAME Gregor /Beckmann/
+1 SEX M
+1 FAMS @F14@
+1 FAMC @F5@
+0 @I5@ INDI
+1 NAME Johann Friedrich /Beckmann/
+1 SEX M
+1 BIRT
+2 DATE 3 JAN 1864
+2 PLAC Tilsit/Ostpreuﬂen
+1 DEAT
+2 DATE 4 MAY 1935
+2 PLAC Allenstein/Ostpreuﬂen
+1 OCCU Schultheiﬂ
+1 FAMS @F4@
+1 FAMC @F7@
+0 @I6@ INDI
+1 NAME Josef Arthur Wilhelm /Beckmann/
+1 SEX M
+1 BIRT
+2 DATE 15 APR 1929
+2 PLAC Allenstein/Ostpreuﬂen
+1 OCCU kaufm‰nnischer Angestellter
+1 FAMS @F5@
+1 FAMC @F8@
+0 @I7@ INDI
+1 NAME Karl /Beckmann/
+1 SEX M
+1 BIRT
+2 DATE 3 MAY 1955
+2 PLAC Dortmund
+1 OCCU Lehrer
+1 FAMS @F6@
+1 FAMC @F5@
+0 @I8@ INDI
+1 NAME Kurt Friedrich /Beckmann/
+1 SEX M
+1 BIRT
+2 DATE 7 SEP 1829
+2 PLAC Tilsit/Ostpreuﬂen
+1 DEAT
+2 DATE 23 DEC 1869
+2 PLAC Tilsit/Ostpreuﬂen
+1 OCCU Kaufmann
+1 FAMS @F7@
+1 FAMC @F2@
+0 @I9@ INDI
+1 NAME Robert Martin /Beckmann/
+1 SEX M
+1 BIRT
+2 DATE 21 NOV 1890
+2 PLAC Allenstein/Ostpreuﬂen
+1 DEAT
+2 DATE 2 JAN 1964
+2 PLAC Oberhausen
+1 OCCU Schreiber
+1 FAMS @F8@
+1 FAMC @F4@
+1 NOTE war im 1. Weltkrieg aktiv im Heer als Unteroffizier
+0 @I10@ INDI
+1 NAME Emma /Franzikeit/
+1 SEX F
+1 BIRT
+2 DATE 11 MAR 1869
+2 PLAC Allenstein/Ostpreuﬂen
+1 DEAT
+2 DATE 17 JUL 1922
+2 PLAC Allenstein/Ostpreuﬂen
+1 FAMS @F9@
+0 @I11@ INDI
+1 NAME Eberhard /Koch/
+1 SEX M
+1 BIRT
+2 DATE 15 SEP 1867
+2 PLAC Allenstein/Ostpreuﬂen
+1 DEAT
+2 DATE 14 MAY 1916
+2 PLAC Allenstein/Ostpreuﬂen
+1 OCCU Schmied
+1 FAMS @F9@
+0 @I12@ INDI
+1 NAME Josefine /Koch/
+1 SEX F
+1 BIRT
+2 DATE 2 DEC 1897
+2 PLAC Allenstein/Ostpreuﬂen
+1 DEAT
+2 DATE 17 JUN 1971
+2 PLAC Oberhausen
+1 OCCU N‰herin
+1 FAMS @F8@
+1 FAMC @F9@
+0 @I13@ INDI
+1 NAME Sophie /Kowalski/
+1 SEX F
+1 BIRT
+2 DATE 5 FEB 1864
+2 PLAC Allenstein/Ostpreuﬂen
+1 DEAT
+2 DATE 13 DEC 1946
+2 PLAC Oberhausen
+1 OCCU Magd
+1 FAMS @F4@
+1 SOUR Sterbeeintrag 512/1946 Standesamt Oberhausen
+0 @I14@ INDI
+1 NAME Minna /Lehner/
+1 SEX F
+1 FAMS @F2@
+0 @I15@ INDI
+1 NAME Gesine /M¸ller/
+1 SEX F
+1 BIRT
+2 DATE 28 JUL 1878
+2 PLAC Balve
+1 DEAT
+2 DATE 15 SEP 1934
+2 PLAC Lendringsen/Sauerland
+1 FAMS @F10@
+1 FAMC @F1@
+0 @I16@ INDI
+1 NAME Konrad Ferdinand /M¸ller/
+1 SEX M
+1 CHR
+2 DATE 1 JUN 1844
+2 PLAC Balve
+2 ADDR Thomaskirche
+1 FAMS @F1@
+1 FAMC @F13@
+0 @I17@ INDI
+1 NAME Paul Hermann /M¸ller/
+1 SEX M
+1 CHR
+2 DATE MAR 1811
+1 FAMS @F13@
+1 SOUR m¸ndliche ‹berlieferung von Gesine Willner, geb. M¸ller
+0 @I18@ INDI
+1 NAME Anna /Scherer/
+1 SEX F
+1 BIRT
+2 DATE 31 MAR 1880
+2 PLAC Iserlohn
+1 DEAT
+2 DATE 29 APR 1966
+2 PLAC Hagen
+1 OCCU W‰scherin
+1 FAMS @F11@
+0 @I19@ INDI
+1 NAME Caroline /Schmidt/
+1 SEX F
+1 FAMS @F7@
+0 @I20@ INDI
+1 NAME Johanna /Schˆpken/
+1 SEX F
+1 BIRT
+2 DATE 13 MAY 1909
+2 PLAC Iserlohn
+1 DEAT
+2 DATE 27 AUG 1979
+2 PLAC Lendringsen/Sauerland
+1 OCCU Kˆchin
+1 FAMS @F12@
+1 FAMC @F11@
+0 @I21@ INDI
+1 NAME Peter /Schˆpken/
+1 SEX M
+1 BIRT
+2 DATE 1 APR 1881
+2 PLAC Iserlohn
+1 DEAT
+2 DATE 23 OCT 1960
+2 PLAC Hagen
+1 OCCU Schlosser
+1 FAMS @F11@
+0 @I22@ INDI
+1 NAME Roswitha /T‰ufer/
+1 SEX F
+1 FAMS @F6@
+0 @I23@ INDI
+1 NAME Helga /Timmen/
+1 SEX F
+1 FAMS @F14@
+0 @I24@ INDI
+1 NAME Sabine /Timmen/
+1 SEX F
+1 FAMC @F14@
+0 @I25@ INDI
+1 NAME Charlotte /Weber/
+1 SEX F
+1 FAMS @F3@
+0 @I26@ INDI
+1 NAME Hermann /Willner/
+1 SEX M
+1 BIRT
+2 DATE 5 SEP 1906
+2 PLAC Lendringsen/Sauerland
+1 DEAT
+2 DATE 7 JUL 1981
+2 PLAC Lendringsen/Sauerland
+1 OCCU Landwirt
+1 FAMS @F12@
+1 FAMC @F10@
+0 @I27@ INDI
+1 NAME Jakob /Willner/
+1 SEX M
+1 BIRT
+2 DATE 19 MAR 1876
+2 PLAC Lendringsen/Sauerland
+1 DEAT
+2 DATE 30 JAN 1933
+2 PLAC Menden/Sauerland
+1 OCCU Landwirt
+1 FAMS @F10@
+0 @I28@ INDI
+1 NAME Regina Hertha Klara /Willner/
+1 SEX F
+1 BIRT
+2 DATE 13 FEB 1931
+2 PLAC Lendringsen/Sauerland
+1 OCCU Verk‰uferin
+1 FAMS @F5@
+1 FAMC @F12@
+0 @F1@ FAM
+1 HUSB @I16@
+1 WIFE @I1@
+1 CHIL @I15@
+1 MARR
+2 DATE 23 MAY 1874
+0 @F2@ FAM
+1 HUSB @I2@
+1 WIFE @I14@
+1 CHIL @I8@
+1 MARR
+2 DATE 19 APR 1820
+2 PLAC Tilsit/Ostpreuﬂen
+0 @F3@ FAM
+1 HUSB @I3@
+1 WIFE @I25@
+1 CHIL @I2@
+1 MARR
+2 DATE ABT 1788
+0 @F4@ FAM
+1 HUSB @I5@
+1 WIFE @I13@
+1 CHIL @I9@
+1 MARR
+2 DATE 27 MAY 1889
+2 PLAC Allenstein/Ostpreuﬂen
+0 @F5@ FAM
+1 HUSB @I6@
+1 WIFE @I28@
+1 CHIL @I7@
+1 CHIL @I4@
+1 MARR
+2 DATE 1 OCT 1953
+2 PLAC Dortmund
+0 @F6@ FAM
+1 HUSB @I7@
+1 WIFE @I22@
+1 MARR
+2 DATE 7 SEP 1985
+2 PLAC Wesel
+0 @F7@ FAM
+1 HUSB @I8@
+1 WIFE @I19@
+1 CHIL @I5@
+1 MARR
+2 DATE 23 JUN 1862
+2 PLAC Tilsit/Ostpreuﬂen
+0 @F8@ FAM
+1 HUSB @I9@
+1 WIFE @I12@
+1 CHIL @I6@
+1 MARR
+2 DATE 16 JUL 1923
+2 PLAC Allenstein/Ostpreuﬂen
+0 @F9@ FAM
+1 HUSB @I11@
+1 WIFE @I10@
+1 CHIL @I12@
+1 MARR
+2 DATE 11 MAR 1889
+2 PLAC Allenstein/Ostpreuﬂen
+0 @F10@ FAM
+1 HUSB @I27@
+1 WIFE @I15@
+1 CHIL @I26@
+1 MARR
+2 DATE 13 NOV 1902
+2 PLAC Lendringsen/Sauerland
+0 @F11@ FAM
+1 HUSB @I21@
+1 WIFE @I18@
+1 CHIL @I20@
+1 MARR
+2 DATE 7 JUN 1906
+2 PLAC Iserlohn
+0 @F12@ FAM
+1 HUSB @I26@
+1 WIFE @I20@
+1 CHIL @I28@
+1 MARR
+2 DATE 18 MAR 1930
+2 PLAC Lendringsen/Sauerland
+0 @F13@ FAM
+1 HUSB @I17@
+1 CHIL @I16@
+0 @F14@ FAM
+1 HUSB @I4@
+1 WIFE @I23@
+1 CHIL @I24@
+1 _MARR N
+0 TRLR

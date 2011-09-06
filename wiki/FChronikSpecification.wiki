@@ -19,13 +19,13 @@ One dataset consist of exactly 1100 bytes each. Encoding is standard ASCII. Expl
  * 30 bytes: town
  * 08 bytes: gender, either *weiblich* (female) or *männlich* (male)
  * 12 bytes: religious denomination, aligned left, e.g. *evangelisch* or *katholisch*
- * 30 bytes: profession, aligned left
+ * 39 bytes: profession, aligned left
  * 10 bytes: date
  * 30 bytes: town
- * 16 bytes: age
+ * 15 bytes: age
  * 10 bytes: date
  * 30 bytes: town
- * 308 bytes: spaces
+ * 300 bytes: spaces
  * 12 bytes: unknown binary coded information
  * 10 bytes: date
  * 30 bytes: town

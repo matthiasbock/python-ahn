@@ -2,7 +2,7 @@
 
 = Data Becker FChronik - File Format Specification =
 
-<img src="http://python-ahn.googlecode.com/svn/trunk/screenshot.jpg"/>
+<img src="http://python-ahn.googlecode.com/svn/trunk/FChronik/screenshot.jpg"/>
 
 The _Data Becker Familienchronik_ family tree software uses a proprietary file format to save it's genealogy data.
 

@@ -69,7 +69,9 @@ do begin
 	   if (Ord(s3[i])=252)then s3[i]:='Å';
 	   end;
 	if (Length(s3)=1)And((Ord(s3[1])<49)Or(Ord(s3[1])>160))then s3:='';
+
 	Write(TXT_file,s3+';');
+
 	if (AktlForm>=Length(s1))
 	then begin
 	     AktlForm:=1;WriteLn(TXT_file,'');k:=k+1;

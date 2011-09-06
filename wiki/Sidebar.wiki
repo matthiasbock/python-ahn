@@ -5,5 +5,3 @@
  * Dirk Böttcher's Ahnenblatt
    * [AhnenblattScreenshots Screenshots]
    * [AhnenblattSpecification File Format Specification]
- * Howto
-   * [CSV Convert to CSV]

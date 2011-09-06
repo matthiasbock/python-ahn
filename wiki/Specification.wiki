@@ -1,5 +1,5 @@
 #summary File Format Specification
 
-= File Format Specification =
+= .AHN File Format Specification =
 
 follows ...

@@ -3,3 +3,22 @@
 = .AHN File Format Specification =
 
 The _Databecker Familienchronik_ family tree software uses a proprietary file format to save it's genealogy data.
+
+The file starts with four magic bytes, followed by datasets, one dataset per person.
+ * 0-3: magic
+
+One dataset consist of exactly 1100 bytes each. Some qualifiers are german.
+ * 20 bytes: last name, aligned right, padded with spaces (0x20)
+ * 20 bytes: last name
+ * 20 bytes: first name
+ * 20 bytes: first name
+ * 10 bytes: spaces (0x20)
+ * 10 bytes: birthday, ASCII digits: _DD.MM.YYYY_
+ * 30 bytes: town of birth
+ * 10 bytes: spaces (0x20)
+ * 10 bytes: date of death/marriage?
+ * 30 bytes: town of death/marriage?
+ * 08 bytes: gender, either _weiblich_ (female) or _männlich_ (male)
+ * 12 bytes: religious denomination, left aligned, padded with spaces, e.g. _evangelisch_ or _katholisch_
+ * profession, left aligned, padded with spaces (0x20)
+ * ...

@@ -56,7 +56,3 @@ class ahn:
 			d = f.read(1100)
 		f.close()
 
-weber = ahn("weber.ahn")
-
-print str(len(weber.datasets))+" datasets"
-

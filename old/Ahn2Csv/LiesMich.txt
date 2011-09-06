@@ -1,0 +1,23 @@
+
+------------------------------------------------------------------------
+******************** MB - Chronikumschreibeprogramm ********************
+------------------------------------------------------------------------
+
+
+Mit dieser Software können sie die "Ahn"-Dateien, die mit "FChronik"
+erstellt wurden in ein Execl-Format umwandeln. Zur optimalen Nutzung
+des Programmes ist die Datei "Format.ahn" erforderlich.
+
+Befolgen sie die Anweisungen, die ihnen das Programm stellt, so werden
+sie sich viel Arbeit mit dieser Software ersparen. Sollten dennoch
+Fehler auftreten, dann wenden sie sich an den Hersteller :
+
+
+                           Matthias Bock
+...
+                      Stand:  November 1999
+                       
+
+Sämtliche Programme sind urheberrechtlich geschützt. Unerlaubte Kopierung,
+Vervielfältigung, Verleih oder Vermietung sind hiermit untersagt.
+Jegliche unautorisierte Nutzung wird straf- und zivilrechtlich verfolgt !

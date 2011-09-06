@@ -15,7 +15,6 @@ One dataset consist of exactly 1100 bytes each. Encoding is standard ASCII. Expl
  * 10 bytes: spaces?
  * 10 bytes: date, represented with ASCII digits as *DD.MM.YYYY*
  * 30 bytes: town, aligned left
- * 10 bytes: spaces?
  * 10 bytes: date
  * 30 bytes: town
  * 08 bytes: gender, either *weiblich* (female) or *männlich* (male)

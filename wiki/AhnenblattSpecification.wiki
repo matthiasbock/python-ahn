@@ -16,16 +16,18 @@ The information itself is stored as standard ASCII string, terminated by: <0x00>
 == Field qualifiers ==
 
 {{{
-Dataset_starts = chr(0x01)
+Dataset_Start = chr(0x01)
 
 Qualifier = {
 	"f" : "Names",
 	"e" : "Surnames",
-	"j" : "Father's Name",
-	chr(0x97) : "Father's Index",
-	"k" : "Mother's Name",
-	chr(0x98) : "Mother's Index",
 	"}" : "Sex",
+	"j" : "Father's Name",
+	chr(0x97) : "Father's ID",
+	"k" : "Mother's Name",
+	chr(0x98) : "Mother's ID",
+	"l" : "Sibling's Name",
+	chr(0x99) : "Sibling's ID",
 	"g" : "Birth Date",
 	"h" : "Birth Place",
 	"i" : "Occupation",
@@ -35,19 +37,15 @@ Qualifier = {
 	"m" : "Marriage Date",
 	"n" : "Marriage Place",
 	"o" : "Marriage Spouse's Name",
-	chr(0x9A) : "Marriage Spouse's Index",
+	chr(0x9A) : "Marriage Spouse's ID",
 	"p" : "Child's Name",
-	chr(0x9B) : "Child's Index",
+	chr(0x9B) : "Child's ID",
 	"q" : "Death Date",
 	"r" : "Death Place",
 	"{" : "Burial Date",
 	"|" : "Burial Place",
 	chr(0x83) : "Note",
-	"8" : "Source",
-
-	"l" : "l",
-	chr(0x84) : "x84",
-	chr(0x99) : "x99",
+	chr(0x84) : "Source",
 	}
 
 Sex =	{

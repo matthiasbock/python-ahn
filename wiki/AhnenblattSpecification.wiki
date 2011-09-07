@@ -26,12 +26,12 @@ The information itself is stored as standard ASCII string, terminated by: <0x00>
 ||  || Mother's ID ||
 ||  || Gender ||
 || i || Occupation ||
-|| g || Birthdate ||
-|| h || Birthplace ||
+|| g || Birth Date ||
+|| h || Birth Place ||
 ||  || Religion ||
-||  || Christening Date ||
-||  || Christening Address ||
-||  || Christening Place ||
+|| t || Christening Date ||
+|| u || Christening Address ||
+|| v || Christening Place ||
 ||  || GODP? ||
 ||  || Confirmation Date ||
 ||  || Confirmation Address ||
@@ -41,7 +41,7 @@ The information itself is stored as standard ASCII string, terminated by: <0x00>
 || { || Burial Date ||
 || | || Burial Place ||
 || 0x83 || Note ||
-||  || Source ||
+|| 8 || Source ||
 || m || Marriage Date ||
 || n || Marriage Place ||
 || o || Marriage Spouse Name ||

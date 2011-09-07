@@ -15,19 +15,19 @@ The information itself is stored as standard ASCII string, terminated by: <0x00>
 
 == Field qualifiers ==
 
-|| *Qualifing character* || *Field* ||
+|| *Qualifing character(s)* || *Field* ||
+|| 0x01 0x03 || Dataset starts ||
 ||  || ID ||
-|| f || Full Name ||
-||  || Surname ||
-||  || Given Name ||
-||  || Father's Name ||
+|| f || First Name(s) ||
+|| e || Surname(s) ||
+|| j || Father's Name ||
 ||  || Father's ID ||
-||  || Mother's Name ||
+|| k || Mother's Name ||
 ||  || Mother's ID ||
 ||  || Gender ||
-||  || Occupation ||
-||  || Birthdate ||
-||  || Birthplace ||
+|| i || Occupation ||
+|| g || Birthdate ||
+|| h || Birthplace ||
 ||  || Religion ||
 ||  || Christening Date ||
 ||  || Christening Address ||
@@ -36,13 +36,19 @@ The information itself is stored as standard ASCII string, terminated by: <0x00>
 ||  || Confirmation Date ||
 ||  || Confirmation Address ||
 ||  || Confirmation Place ||
-||  || Death Date ||
-||  || Death Place ||
-||  || Burried Date ||
-||  || Burried Place ||
-||  || Note ||
+|| q || Death Date ||
+|| r || Death Place ||
+|| { || Burial Date ||
+|| | || Burial Place ||
+|| 0x83 || Note ||
 ||  || Source ||
-||  || Marriage Date ||
-||  || Marriage Place ||
-||  || Marriage Spouse Name ||
+|| m || Marriage Date ||
+|| n || Marriage Place ||
+|| o || Marriage Spouse Name ||
 ||  || Marriage Spouse ID ||
+
+More field characters observed:
+<0x97>
+<0x98>
+<0x9A>
+<0x9B>

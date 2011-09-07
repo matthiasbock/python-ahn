@@ -31,9 +31,14 @@ Qualifier = {
 	"g" : "Birth Date",
 	"h" : "Birth Place",
 	"i" : "Occupation",
+	"s" : "Religion",
 	"t" : "Christening Date",
 	"u" : "Christening Address",
 	"v" : "Christening Place",
+	"w" : "Godfather",
+	"x" : "Confirmation Date",
+	"y" : "Confirmation Address",
+	"z" : "Confirmation Place",
 	"m" : "Marriage Date",
 	"n" : "Marriage Place",
 	"o" : "Marriage Spouse's Name",
@@ -46,6 +51,9 @@ Qualifier = {
 	"|" : "Burial Place",
 	chr(0x83) : "Note",
 	chr(0x84) : "Source",
+	chr(0xa1) : "Picture Filename",
+	chr(0xa3) : "Picture Absolute Path",
+	chr(0xa4) : "Picture Relative Path",	# sometimes with filename, sometimes without
 	}
 
 Sex =	{

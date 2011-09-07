@@ -2,33 +2,47 @@
 
 = Dirk Böttcher's Ahnenblatt - File Format Specification =
 
-REFN
-NAME
-SURN
-GIVN
-FATH.NAME
-FATH.REFN
-MOTH.NAME
-MOTH.REFN
-SEX
-OCCU
-BIRT.DATE
-BIRT.PLAC
-RELI
-CHR.DATE
-CHR.ADDR
-CHR.PLAC
-GODP
-CONF.DATE
-CONF.ADDR
-CONF.PLAC
-DEAT.DATE
-DEAT.PLAC
-BURI.DATE
-BURI.PLAC
-NOTE
-SOUR
-MARR.DATE.1
-MARR.PLAC.1
-MARR.SPOU.NAME.1
-MARR.SPOU.REFN.1
+_Dirk Böttcher's Ahnenblatt_ family tree software uses a proprietary file format to save it's genealogy data.
+
+The file consists of a header with magic bytes and meta information, followed by a sequence of datasets, one dataset per person.
+
+
+The length of a dataset depends on the amount of information stored.
+A dataset is a sequence of fields. Each field starts with a one byte qualifier,
+defining what kind of information follows, followed by a 2 byte little-endian word,
+defining how many bytes of information follow.
+The information itself is stored as standard ASCII string, terminated by: <0x00>
+
+== Field qualifiers ==
+
+|| *Qualifing character* || *Field* ||
+||  || ID ||
+|| f || Full Name ||
+||  || Surname ||
+||  || Given Name ||
+||  || Father's Name ||
+||  || Father's ID ||
+||  || Mother's Name ||
+||  || Mother's ID ||
+||  || Gender ||
+||  || Occupation ||
+||  || Birthdate ||
+||  || Birthplace ||
+||  || Religion ||
+||  || Christening Date ||
+||  || Christening Address ||
+||  || Christening Place ||
+||  || GODP? ||
+||  || Confirmation Date ||
+||  || Confirmation Address ||
+||  || Confirmation Place ||
+||  || Death Date ||
+||  || Death Place ||
+||  || Burried Date ||
+||  || Burried Place ||
+||  || Note ||
+||  || Source ||
+||  || Marriage Date ||
+||  || Marriage Place ||
+||  || Marriage Spouse Name ||
+||  || Marriage Spouse ID ||

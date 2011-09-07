@@ -4,7 +4,7 @@
 
 _Dirk Böttcher's Ahnenblatt_ family tree software uses a proprietary file format to save it's genealogy data.
 
-The file consists of a header with magic bytes and meta information, followed by a sequence of datasets, one dataset per person.
+The file consists of a header with magic bytes and meta information, followed by a sequence of datasets, one dataset per person. Only one byte is used for IDs, so the maxmimum number of datasets is limited to 256.
 
 
 The length of a dataset depends on the amount of information stored.
@@ -15,40 +15,44 @@ The information itself is stored as standard ASCII string, terminated by: <0x00>
 
 == Field qualifiers ==
 
-|| *Qualifing character(s)* || *Field* ||
-|| 0x01 0x03 || Dataset starts ||
-||  || ID ||
-|| f || First Name(s) ||
-|| e || Surname(s) ||
-|| j || Father's Name ||
-||  || Father's ID ||
-|| k || Mother's Name ||
-||  || Mother's ID ||
-||  || Gender ||
-|| i || Occupation ||
-|| g || Birth Date ||
-|| h || Birth Place ||
-||  || Religion ||
-|| t || Christening Date ||
-|| u || Christening Address ||
-|| v || Christening Place ||
-||  || GODP? ||
-||  || Confirmation Date ||
-||  || Confirmation Address ||
-||  || Confirmation Place ||
-|| q || Death Date ||
-|| r || Death Place ||
-|| { || Burial Date ||
-|| | || Burial Place ||
-|| 0x83 || Note ||
-|| 8 || Source ||
-|| m || Marriage Date ||
-|| n || Marriage Place ||
-|| o || Marriage Spouse Name ||
-||  || Marriage Spouse ID ||
+{{{
+Dataset_starts = chr(0x01)
 
-More field characters observed:
-<0x97>
-<0x98>
-<0x9A>
-<0x9B>
+Qualifier = {
+	"f" : "Names",
+	"e" : "Surnames",
+	"j" : "Father's Name",
+	chr(0x97) : "Father's ID",
+	"k" : "Mother's Name",
+	chr(0x98) : "Mother's ID",
+	"}" : "Sex",
+	"g" : "Birth Date",
+	"h" : "Birth Place",
+	"i" : "Occupation",
+	"t" : "Christening Date",
+	"u" : "Christening Address",
+	"v" : "Christening Place",
+	"m" : "Marriage Date",
+	"n" : "Marriage Place",
+	"o" : "Marriage Spouse Name",
+	chr(0x9A) : "Marriage Spouse ID",
+	"q" : "Death Date",
+	"r" : "Death Place",
+	"{" : "Burial Date",
+	"|" : "Burial Place",
+	chr(0x83) : "Note",
+	"8" : "Source",
+
+	# unknown qualifiers
+	"l" : "l",
+	"p" : "p",
+	chr(0x84) : "x84",
+	chr(0x99) : "x99",
+	chr(0x9B) : "x9b",
+}
+
+Sex =	{
+	chr(0x01) : "male",
+	chr(0x02) : "female"
+	}
+}}}

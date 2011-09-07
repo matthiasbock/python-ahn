@@ -16,9 +16,14 @@ Qualifier = {
 	"g" : "Birth Date",
 	"h" : "Birth Place",
 	"i" : "Occupation",
+	"s" : "Religion",
 	"t" : "Christening Date",
 	"u" : "Christening Address",
 	"v" : "Christening Place",
+	"w" : "Godfather",
+	"x" : "Confirmation Date",
+	"y" : "Confirmation Address",
+	"z" : "Confirmation Place",
 	"m" : "Marriage Date",
 	"n" : "Marriage Place",
 	"o" : "Marriage Spouse's Name",
@@ -31,6 +36,9 @@ Qualifier = {
 	"|" : "Burial Place",
 	chr(0x83) : "Note",
 	chr(0x84) : "Source",
+	chr(0xa1) : "Picture Filename",
+	chr(0xa3) : "Picture Absolute Path",
+	chr(0xa4) : "Picture Relative Path",	# sometimes with filename, sometimes without
 	}
 
 Sex =	{
@@ -63,7 +71,7 @@ class ahn:
 		q = read_qualifier()
 		while q:								# read until end-of-file
 			if q == Dataset_Start:	# 0x01
-				if (current_dataset is not None) and (current_dataset.fields != {}):
+				if (current_dataset is not None) and (current_dataset.fields != []):
 					self.datasets.append( current_dataset )
 				f.read(1)	# 0x03
 				current_dataset = dataset()				# start new dataset
@@ -72,7 +80,7 @@ class ahn:
 				d = read_data()
 				if len(d) > 0:						# add field to current dataset
 					if not q in Qualifier.keys():	# unknown qualifier
-						current_dataset.fields.append( ("??? "+q+" ???", d) )
+						current_dataset.fields.append( ("------------??? "+q+" ???------------", d) )
 					elif q == "}":			# sex
 						current_dataset.fields.append( (Qualifier[q], Sex[d]) )
 					elif len(d) == 1:		# some ID
@@ -80,7 +88,7 @@ class ahn:
 					else:				# some string
 						current_dataset.fields.append( (Qualifier[q], d) )
 			q = read_qualifier()
-		if (current_dataset is not None) and (current_dataset.fields != {}):
+		if (current_dataset is not None) and (current_dataset.fields != []):
 			self.datasets.append( current_dataset )
 		f.close()
 

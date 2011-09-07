@@ -22,9 +22,9 @@ Qualifier = {
 	"f" : "Names",
 	"e" : "Surnames",
 	"j" : "Father's Name",
-	chr(0x97) : "Father's ID",
+	chr(0x97) : "Father's Index",
 	"k" : "Mother's Name",
-	chr(0x98) : "Mother's ID",
+	chr(0x98) : "Mother's Index",
 	"}" : "Sex",
 	"g" : "Birth Date",
 	"h" : "Birth Place",
@@ -34,8 +34,10 @@ Qualifier = {
 	"v" : "Christening Place",
 	"m" : "Marriage Date",
 	"n" : "Marriage Place",
-	"o" : "Marriage Spouse Name",
-	chr(0x9A) : "Marriage Spouse ID",
+	"o" : "Marriage Spouse's Name",
+	chr(0x9A) : "Marriage Spouse's Index",
+	"p" : "Child's Name",
+	chr(0x9B) : "Child's Index",
 	"q" : "Death Date",
 	"r" : "Death Place",
 	"{" : "Burial Date",
@@ -43,13 +45,10 @@ Qualifier = {
 	chr(0x83) : "Note",
 	"8" : "Source",
 
-	# unknown qualifiers
 	"l" : "l",
-	"p" : "p",
 	chr(0x84) : "x84",
 	chr(0x99) : "x99",
-	chr(0x9B) : "x9b",
-}
+	}
 
 Sex =	{
 	chr(0x01) : "male",

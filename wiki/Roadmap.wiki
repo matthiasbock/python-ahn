@@ -2,9 +2,14 @@
 
 = Roadmap =
 
-== Currently supported ==
- * conversion to spreadsheet (comma separated values, ".csv")
+Project started in October 1999. Python binding started 6th of September 2011.
 
-== Planned ==
- * python object with import & export capabilities
- * conversion to GEDCOM
+== Current status ==
+ * conversion of FChronik to CSV (using the old Turbo Pascal tool)
+ * import of FChronik in python
+ * import of Ahnenblatt in python
+
+== Aims ==
+ * conversion of FChronik to Ahnenblatt and vice versa
+ * export to csv (using python)
+ * export to GEDCOM

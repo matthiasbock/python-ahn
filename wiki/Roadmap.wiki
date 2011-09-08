@@ -10,6 +10,8 @@ Project started in October 1999. Python binding started 6th of September 2011.
  * import of Ahnenblatt in python
 
 == Aims ==
- * conversion of FChronik to Ahnenblatt and vice versa
- * export to csv (using python)
+ * export to FChronik.ahn
+ * export to Ahnenblatt.ahn
+ * convert FChronik to Ahnenblatt & vice-versa
+ * export to CSV (using python)
  * export to GEDCOM

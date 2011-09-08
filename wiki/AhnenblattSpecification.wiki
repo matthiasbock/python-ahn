@@ -2,18 +2,15 @@
 
 = Dirk Böttcher's Ahnenblatt - File Format Specification =
 
-_Dirk Böttcher's Ahnenblatt_ family tree software uses a proprietary file format to save it's genealogy data.
+_Dirk Böttcher's Ahnenblatt_ family tree software uses a proprietary file format to save it's genealogy data. File extension is *.ahn*.
 
-The file consists of a header with magic bytes and meta information, followed by a sequence of datasets, one dataset per person. Only one byte is used for IDs, so the maxmimum number of datasets is limited to 256.
+The file consists of a header with magic bytes and meta information, followed by a sequence of datasets, one dataset per person. A dataset is a sequence of fields. Each field starts with a one byte qualifier, defining what kind of information will follow, followed by a 2 byte little-endian word, defining how many bytes of information follow. The information itself is stored as standard ASCII string, terminated by:
+ * <0x00>
+In contrast to the FChronik format, the length varies from dataset to dataset, as it depends on the number and length of the fields stored in it.
 
+Only one byte is used for IDs, so the maxmimum number of datasets is limited to 256.
 
-The length of a dataset depends on the amount of information stored.
-A dataset is a sequence of fields. Each field starts with a one byte qualifier,
-defining what kind of information follows, followed by a 2 byte little-endian word,
-defining how many bytes of information follow.
-The information itself is stored as standard ASCII string, terminated by: <0x00>
-
-== Field qualifiers ==
+== Fields ==
 
 {{{
 Dataset_Start = chr(0x01)

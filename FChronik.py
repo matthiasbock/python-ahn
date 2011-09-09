@@ -76,13 +76,13 @@ class dataset:
 			value = self.fields[i][1]
 			if Fields[i][fieldtype] == binary:
 				value = chr(value)+chr(0)
-				justify = chr(0)
+				justify_with = chr(0)
 			elif Fields[i][fieldtype] == string:
-				justify = chr(0x20)
+				justify_with = chr(0x20)
 			if Fields[i][alignment] == right:
-				value = value.rjust(Fields[i][length], justify)
+				value = value.rjust(Fields[i][length], justify_with)
 			elif Fields[i][alignment] == left:
-				value = value.ljust(Fields[i][length], justify)
+				value = value.ljust(Fields[i][length], justify_with)
 			result += value
 		return result
 
@@ -92,6 +92,7 @@ class dataset:
 
 class ahn:
 	def __init__(self, filename=None, show=False):
+		self.header = chr(1)+chr(0)+chr(0)+chr(0)
 		self.datasets = []
 		if filename is not None:
 			self.load(filename, show)

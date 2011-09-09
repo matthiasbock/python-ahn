@@ -8,50 +8,53 @@ binary = 2 # binary
 descriptor = 0	# pos in field tuple
 fieldtype = 1
 length = 2
+alignment = 3
 
-Fields = [	# dataset = sequence of fields
+left = 0
+right = 1
 
-		("Name", string, 20),
-		("Geburtsname", string, 20),
-		("Erster Vorname", string, 20),
-		("Weitere Vornamen", string, 20),
+Fields = [	
+		("Name", string, 20, left),
+		("Geburtsname", string, 20, left),
+		("Erster Vorname", string, 20, left),
+		("Weitere Vornamen", string, 20, left),
 
 		# 10 x 0x20
-		("spaces1", string, 10),
+		("spaces1", string, 10, left),
 
-		("geboren am", date, 10),
-		("geboren in", string, 30),
+		("geboren am", date, 10, None),
+		("geboren in", string, 30, left),
 
-		("getauft am", date, 10),
-		("getauft in", string, 30),
+		("getauft am", date, 10, None),
+		("getauft in", string, 30, left),
 
-		("Geschlecht", string, 8),
-		("Konfession", string, 12),
-		("Beruf", string, 39),
+		("Geschlecht", string, 8, left),
+		("Konfession", string, 12, left),
+		("Beruf", string, 39, left),
 
-		("gestorben am", date, 10),
-		("gestorben in", string, 30),
+		("gestorben am", date, 10, None),
+		("gestorben in", string, 30, left),
 
-		("Alter", string, 15),
+		("Alter", string, 15, left),
 
-		("beerdigt am", date, 10),
-		("beerdigt in", string, 30),
+		("beerdigt am", date, 10, None),
+		("beerdigt in", string, 30, left),
 
 		# 300 x 0x20
-		("spaces2", string, 300),
+		("spaces2", string, 300, left),
 
-		("binary1", binary, 12),
+		("binary1", binary, 12, right),
 
-		("Hochzeit am", date, 10),
-		("Hochzeit in", string, 30),
+		("Hochzeit am", date, 10, None),
+		("Hochzeit in", string, 30, left),
 
-		("binary2", binary, 76),
-		("string1", string, 40),
-		("binary3", binary, 76),
-		("string2", string, 40),
-		("binary4", binary, 76),
-		("string3", string, 38),
-		("binary5", binary, 78)
+		("binary2", binary, 76, right),
+		("string1", string, 40, left),
+		("binary3", binary, 76, right),
+		("string2", string, 40, left),
+		("binary4", binary, 76, right),
+		("string3", string, 38, left),
+		("binary5", binary, 74, right)
 	]
 
 class dataset:
@@ -67,6 +70,26 @@ class dataset:
 			self.fields.append( (field[descriptor], value) )
 			p += field[length]
 
+	def export(self):
+		result = ""
+		for i in range(0, len(Fields)):
+			value = self.fields[i][1]
+			if Fields[i][fieldtype] == binary:
+				value = chr(value)+chr(0)
+				justify = chr(0)
+			elif Fields[i][fieldtype] == string:
+				justify = chr(0x20)
+			if Fields[i][alignment] == right:
+				value = value.rjust(Fields[i][length], justify)
+			elif Fields[i][alignment] == left:
+				value = value.ljust(Fields[i][length], justify)
+			result += value
+		return result
+
+	def exportAhnenblatt(self):
+		# blabla
+		return ()
+
 class ahn:
 	def __init__(self, filename=None, show=False):
 		self.datasets = []
@@ -75,14 +98,33 @@ class ahn:
 
 	def load(self, filename, show=False):
 		f = open(filename)
-		f.read(4)		# magic
+		self.header = f.read(4)		# magic
 		d = f.read(1100)
 		while d:
 			x = dataset(d)
 			self.datasets.append( x )
 			if show:
 				print x.fields
+				print d
+				print str(len(d))
+				reexported = x.export()
+				print reexported
+				print str(len(reexported))
 				print
 			d = f.read(1100)
 		f.close()
+
+	def saveto(self, filename):
+		f = open(filename, "w")
+		f.write(self.header)
+		for dataset in self.datasets:
+			f.write(dataset.export())
+		f.close()
+
+	def exportAhnenblatt(self, filename):
+		import Ahnenblatt
+		export = Ahnenblatt.ahn()
+		for dataset in self.datasets:
+			export.datasets.append( dataset.exportAhnenblatt() )
+		return export
 

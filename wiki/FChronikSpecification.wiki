@@ -4,24 +4,36 @@
 
 The _Data Becker Familienchronik_ family tree software uses a proprietary file format to save it's genealogy data. File extension is *.ahn*.
 
+== Format ==
+
 Every file starts with four magic bytes, followed by datasets, one dataset per person.
  * 04 bytes: magic <0x01> <0x00> <0x00> <0x00>
 
-One dataset consist of a predefined sequence of fields. Also every field has a predefined length. Every dataset consists of exactly 1100 bytes. 
+One dataset consist of a predefined sequence of fields. Also every field has a predefined length. This results in every dataset consisting of exactly 1100 bytes. 
 
-Strings smaller than their appropriate field length are padded with spaces, where the actual information can be aligned left or right:
+A field can be one of the three field types:
+ * string,
+ * date or
+ * binary
+
+Strings smaller than their appropriate field length are padded with spaces:
  * <0x20>
+The actual information is aligned left or right, depending on the field.
 
 In analogous manner, binary encoded information is padded with zeroes:
  * <0x00>
 
+Each field of the date type has a length of 10 bytes. Dates are represented by dot separated ASCII digits:
+ * *DD.MM.YYYY*
+
 == Fields ==
+
  * 20 bytes: last name, aligned right
  * 20 bytes: last name
  * 20 bytes: first name
  * 20 bytes: first name
  * 10 bytes: spaces?
- * 10 bytes: date, represented with ASCII digits as *DD.MM.YYYY*
+ * 10 bytes: date
  * 30 bytes: town, aligned left
  * 10 bytes: date
  * 30 bytes: town

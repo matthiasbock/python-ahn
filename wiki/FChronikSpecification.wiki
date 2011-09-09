@@ -10,7 +10,7 @@ Every file starts with four magic bytes, followed by datasets, one dataset per p
  * 04 bytes: magic <0x01> <0x00> <0x00> <0x00>
 
 One dataset consist of a predefined sequence of fields. Also every field has a predefined length.
-This results in every dataset having exactly 1100 bytes. 
+This results in every dataset having exactly 1096 bytes. 
 
 A field can be one of the three field types:
  * string,
@@ -22,7 +22,7 @@ Strings smaller than their appropriate field length are padded with spaces:
 The actual information is aligned left or right, depending on the field:
 
 || *Field(s)* || *Alignment* || *Possible values* ||
-|| Names || right ||
+|| Names || left ||
 || Towns || left ||
 || Gender || center || männlich, weiblich ||
 || Religion || left || katholisch, evangelisch and others ||
@@ -37,49 +37,50 @@ Each field of the date type has a length of 10 bytes. Dates are represented by d
 == Fields ==
 
 {{{
-Fields = [
-		("Name", string, 20),
-		("Geburtsname", string, 20),
-		("Erster Vorname", string, 20),
-		("Weitere Vornamen", string, 20),
+Fields = [	
+		("Name", string, 20, left),
+		("Geburtsname", string, 20, left),
+		("Erster Vorname", string, 20, left),
+		("Weitere Vornamen", string, 20, left),
 
 		# 10 x 0x20
-		("spaces1", string, 10),
+		("spaces1", string, 10, left),
 
-		("geboren am", date, 10),
-		("geboren in", string, 30),
+		("geboren am", date, 10, None),
+		("geboren in", string, 30, left),
 
-		("getauft am", date, 10),
-		("getauft in", string, 30),
+		("getauft am", date, 10, None),
+		("getauft in", string, 30, left),
 
-		("Geschlecht", string, 8),
-		("Konfession", string, 12),
-		("Beruf", string, 39),
+		("Geschlecht", string, 8, left),
+		("Konfession", string, 12, left),
+		("Beruf", string, 39, left),
 
-		("gestorben am", date, 10),
-		("gestorben in", string, 30),
+		("gestorben am", date, 10, None),
+		("gestorben in", string, 30, left),
 
-		("Alter", string, 15),
+		("Alter", string, 15, right),
 
-		("beerdigt am", date, 10),
-		("beerdigt in", string, 30),
+		("beerdigt am", date, 10, None),
+		("beerdigt in", string, 30, left),
 
 		# 300 x 0x20
-		("spaces2", string, 300),
+		("spaces2", string, 300, left),
 
-		("binary1", binary, 12),
+		("binary1", binary, 12, right),
 
-		("Hochzeit am", date, 10),
-		("Hochzeit in", string, 30),
+		("Hochzeit am", date, 10, None),
+		("Hochzeit in", string, 30, left),
 
-		("binary2", binary, 76),
-		("string1", string, 40),
-		("binary3", binary, 76),
-		("string2", string, 40),
-		("binary4", binary, 76),
-		("string3", string, 38),
-		("binary5", binary, 78)
+		("binary2", binary, 76, right),
+		("string1", string, 40, left),
+		("binary3", binary, 76, right),
+		("string2", string, 40, left),
+		("binary4", binary, 76, right),
+		("string3", string, 38, left),
+		("binary5", binary, 74, right)
 	]
+
 }}}
 
 == Characterset ==

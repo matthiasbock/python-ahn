@@ -92,3 +92,7 @@ class ahn:
 			self.datasets.append( current_dataset )
 		f.close()
 
+	def saveto(self, filename):
+		# blabla
+		return
+

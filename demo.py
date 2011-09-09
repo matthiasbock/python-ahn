@@ -7,6 +7,9 @@ weber = FChronik.ahn("FChronik/Beispiel.ahn", show=True)
 
 print str(len(weber.datasets))+" datasets"
 
+weber.saveto("FChronik/Beispiel_written_by_python.ahn")
+
+#weber.exportAhnenblatt().saveto("Fchronik/Beispiel2Ahnenblatt.ahn")
 
 #Beispiel = Ahnenblatt.ahn("Ahnenblatt/Beispiele/Beispiel.ahn")
 

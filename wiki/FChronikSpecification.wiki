@@ -59,7 +59,7 @@ Fields = [
 		("gestorben am", date, 10, None),
 		("gestorben in", string, 30, left),
 
-		("Alter", string, 15, right),
+		("Alter", string, 15, left),
 
 		("beerdigt am", date, 10, None),
 		("beerdigt in", string, 30, left),

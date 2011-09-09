@@ -9,7 +9,8 @@ The _Data Becker Familienchronik_ family tree software uses a proprietary file f
 Every file starts with four magic bytes, followed by datasets, one dataset per person.
  * 04 bytes: magic <0x01> <0x00> <0x00> <0x00>
 
-One dataset consist of a predefined sequence of fields. Also every field has a predefined length. This results in every dataset consisting of exactly 1100 bytes. 
+One dataset consist of a predefined sequence of fields. Also every field has a predefined length.
+This results in every dataset having exactly 1100 bytes. 
 
 A field can be one of the three field types:
  * string,
@@ -18,7 +19,14 @@ A field can be one of the three field types:
 
 Strings smaller than their appropriate field length are padded with spaces:
  * <0x20>
-The actual information is aligned left or right, depending on the field.
+The actual information is aligned left or right, depending on the field:
+
+|| *Field(s)* || *Alignment* || *Possible values* ||
+|| Names || right ||
+|| Towns || left ||
+|| Gender || center || männlich, weiblich ||
+|| Religion || left || katholisch, evangelisch and others ||
+|| Occupation || left ||
 
 In analogous manner, binary encoded information is padded with zeroes:
  * <0x00>
@@ -28,34 +36,51 @@ Each field of the date type has a length of 10 bytes. Dates are represented by d
 
 == Fields ==
 
- * 20 bytes: last name, aligned right
- * 20 bytes: last name
- * 20 bytes: first name
- * 20 bytes: first name
- * 10 bytes: spaces?
- * 10 bytes: date
- * 30 bytes: town, aligned left
- * 10 bytes: date
- * 30 bytes: town
- * 08 bytes: gender, either *weiblich* (female) or *männlich* (male)
- * 12 bytes: religious denomination, aligned left, e.g. *evangelisch* or *katholisch*
- * 39 bytes: profession, aligned left
- * 10 bytes: date
- * 30 bytes: town
- * 15 bytes: age
- * 10 bytes: date
- * 30 bytes: town
- * 300 bytes: spaces
- * 12 bytes: unknown binary coded information
- * 10 bytes: date
- * 30 bytes: town
- * 76 bytes: unknown binary coded information
- * 40 bytes: unknown string
- * 76 bytes: unknown binary coded information
- * 40 bytes: unknown string
- * 76 bytes: unknown binary coded information
- * 40 bytes: unknown string
- * 76 bytes: unknown binary coded information
+{{{
+Fields = [
+		("Name", string, 20),
+		("Geburtsname", string, 20),
+		("Erster Vorname", string, 20),
+		("Weitere Vornamen", string, 20),
+
+		# 10 x 0x20
+		("spaces1", string, 10),
+
+		("geboren am", date, 10),
+		("geboren in", string, 30),
+
+		("getauft am", date, 10),
+		("getauft in", string, 30),
+
+		("Geschlecht", string, 8),
+		("Konfession", string, 12),
+		("Beruf", string, 39),
+
+		("gestorben am", date, 10),
+		("gestorben in", string, 30),
+
+		("Alter", string, 15),
+
+		("beerdigt am", date, 10),
+		("beerdigt in", string, 30),
+
+		# 300 x 0x20
+		("spaces2", string, 300),
+
+		("binary1", binary, 12),
+
+		("Hochzeit am", date, 10),
+		("Hochzeit in", string, 30),
+
+		("binary2", binary, 76),
+		("string1", string, 40),
+		("binary3", binary, 76),
+		("string2", string, 40),
+		("binary4", binary, 76),
+		("string3", string, 38),
+		("binary5", binary, 78)
+	]
+}}}
 
 == Characterset ==
 

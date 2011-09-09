@@ -1,58 +1,88 @@
 #! /usr/bin/python
 # -*- coding: iso-8859-15 -*-
 
-class dataset:
-	def __init__(self, data):
-		self.Name = data[0:20].strip()
-		self.Geburtsname = data[20:40].strip()
-		self.Vorname = data[40:60].strip()
-		self.WeitereVornamen = data[60:80].strip()
+string = 0 # string
+date = 1 # date
+binary = 2 # binary
+
+descriptor = 0	# pos in field tuple
+fieldtype = 1
+length = 2
+
+Fields = [	# dataset = sequence of fields
+
+		("Name", string, 20),
+		("Geburtsname", string, 20),
+		("Erster Vorname", string, 20),
+		("Weitere Vornamen", string, 20),
 
 		# 10 x 0x20
-		self.spaces1 = data[80:90]
+		("spaces1", string, 10),
 
-		self.GeborenAm = data[90:100]
-		self.GeborenIn = data[100:130].strip()
-		self.GetauftAm = data[130:140]
-		self.GetauftIn = data[140:170].strip()
-		self.Geschlecht = data[170:178]
-		self.Religion = data[178:190].strip()
-		self.Beruf = data[190:229].strip()
-		self.GestorbenAm = data[229:239]
-		self.GestorbenIn = data[239:269].strip()
-		self.Alter = data[269:284].strip()
-		self.BeerdigtAm = data[284:294]
-		self.BeerdigtIn = data[294:324].strip()
+		("geboren am", date, 10),
+		("geboren in", string, 30),
+
+		("getauft am", date, 10),
+		("getauft in", string, 30),
+
+		("Geschlecht", string, 8),
+		("Konfession", string, 12),
+		("Beruf", string, 39),
+
+		("gestorben am", date, 10),
+		("gestorben in", string, 30),
+
+		("Alter", string, 15),
+
+		("beerdigt am", date, 10),
+		("beerdigt in", string, 30),
 
 		# 300 x 0x20
-		self.spaces2 = data[324:624]
+		("spaces2", string, 300),
 
-		self.binary1 = data[624:636]
+		("binary1", binary, 12),
 
-		self.HochzeitAm = data[636:646]
-		self.HochzeitIn = data[646:676].strip()
+		("Hochzeit am", date, 10),
+		("Hochzeit in", string, 30),
 
-		self.binary2 = data[676:752]
-		self.string1 = data[752:792]
-		self.binary3 = data[792:868]
-		self.string2 = data[868:908]
-		self.binary4 = data[908:984]
-		self.string3 = data[984:1024]
-		self.binary5 = data[1024:1100]
+		("binary2", binary, 76),
+		("string1", string, 40),
+		("binary3", binary, 76),
+		("string2", string, 40),
+		("binary4", binary, 76),
+		("string3", string, 38),
+		("binary5", binary, 78)
+	]
+
+class dataset:
+	def __init__(self, data):
+		self.fields = []
+		p = 0
+		for field in Fields:
+			value = data[ p : p+field[length] ]
+			if field[fieldtype] == string:
+				value = value.strip()
+			elif field[fieldtype] == binary:
+				value = ord(value[0])+(ord(value[1])*256)
+			self.fields.append( (field[descriptor], value) )
+			p += field[length]
 
 class ahn:
-	def __init__(self, filename=None):
+	def __init__(self, filename=None, show=False):
 		self.datasets = []
 		if filename is not None:
-			self.load(filename)
+			self.load(filename, show)
 
-	def load(self, filename):
+	def load(self, filename, show=False):
 		f = open(filename)
 		f.read(4)		# magic
 		d = f.read(1100)
 		while d:
 			x = dataset(d)
 			self.datasets.append( x )
+			if show:
+				print x.fields
+				print
 			d = f.read(1100)
 		f.close()
 

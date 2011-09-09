@@ -3,7 +3,7 @@
 
 Dataset_Start = chr(0x01)
 
-Qualifier = {
+Descriptor = {
 	"f" : "Names",
 	"e" : "Surnames",
 	"}" : "Sex",
@@ -60,7 +60,7 @@ class ahn:
 		f = open(filename)
 		f.read(201)		# header
 
-		def read_qualifier():	# 1 byte qualifier
+		def read_Descriptor():	# 1 byte Descriptor
 			return f.read(1)
 		def read_length():	# 2 byte length
 			return ord(f.read(1))+(ord(f.read(1))*256)
@@ -68,7 +68,7 @@ class ahn:
 			return f.read(l)[:-1]
 
 		current_dataset = None		
-		q = read_qualifier()
+		q = read_Descriptor()
 		while q:								# read until end-of-file
 			if q == Dataset_Start:	# 0x01
 				if (current_dataset is not None) and (current_dataset.fields != []):
@@ -79,15 +79,15 @@ class ahn:
 				l = read_length()					# read field
 				d = read_data()
 				if len(d) > 0:						# add field to current dataset
-					if not q in Qualifier.keys():	# unknown qualifier
+					if not q in Descriptor.keys():	# unknown Descriptor
 						current_dataset.fields.append( ("------------??? "+q+" ???------------", d) )
 					elif q == "}":			# sex
-						current_dataset.fields.append( (Qualifier[q], Sex[d]) )
+						current_dataset.fields.append( (Descriptor[q], Sex[d]) )
 					elif len(d) == 1:		# some ID
-						current_dataset.fields.append( (Qualifier[q], ord(d)+1) )
+						current_dataset.fields.append( (Descriptor[q], ord(d)+1) )
 					else:				# some string
-						current_dataset.fields.append( (Qualifier[q], d) )
-			q = read_qualifier()
+						current_dataset.fields.append( (Descriptor[q], d) )
+			q = read_Descriptor()
 		if (current_dataset is not None) and (current_dataset.fields != []):
 			self.datasets.append( current_dataset )
 		f.close()

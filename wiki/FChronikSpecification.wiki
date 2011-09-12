@@ -13,7 +13,8 @@ Every field has a predefined length, which results in every dataset having exact
 == Dataset format ==
 
 {{{
-Fields = [	
+Fields = [
+		("ID", integer, 4),
 		("Name", string, 20),
 		("Geburtsname", string, 20),
 		("Erster Vorname", string, 20),
@@ -40,22 +41,25 @@ Fields = [
 		("beerdigt am", date, 10),
 		("beerdigt in", string, 30),
 
-		# 300 x 0x20
-		("spaces2", string, 300),
+		("Notizen", string, 300),
 
-		("binary1", binary, 12),
-
-		("Hochzeit am", date, 10),
-		("Hochzeit in", string, 30),
-
-		("binary2", binary, 76),
-		("string1", string, 40),
-		("binary3", binary, 76),
-		("string2", string, 40),
-		("binary4", binary, 76),
-		("string3", string, 38),
-		("binary5", binary, 74)
+		("Vater", integer, 4),
+		("Mutter", integer, 4),
 	]
+
+for Ehe in range(0,4):				# 4 marriages possible
+	Nr = str(Ehe+1)+"."
+	Fields += [
+		(Nr+" Ehepartner", integer, 4),
+		(Nr+" Hochzeit am", date, 10)
+		]
+	if Ehe+1 != 4:				# fix for a bug in the Data Becker Familienchronik
+		Fields.append( (Nr+" Hochzeit in", string, 30) )
+	else:
+		Fields.append( (Nr+" Hochzeit in", string, 28) )
+		Fields.append( ("bug", integer, 2) )
+	for i in range(0,18):			# 18 children per marriage
+		Fields.append( ("Kind "+str(i+1)+" aus Ehe "+str(Ehe+1), integer, 4) )
 }}}
 
 == Field format ==

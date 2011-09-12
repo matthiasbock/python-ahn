@@ -18,10 +18,7 @@ Fields = [
 		("Name", string, 20),
 		("Geburtsname", string, 20),
 		("Erster Vorname", string, 20),
-		("Weitere Vornamen", string, 20),
-
-		# 10 x 0x20
-		("spaces1", string, 10),
+		("Weitere Vornamen", string, 30),
 
 		("geboren am", date, 10),
 		("geboren in", string, 30),

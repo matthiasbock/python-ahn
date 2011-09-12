@@ -75,6 +75,10 @@ Strings smaller than their appropriate field length are padded right with spaces
 Each date field has 10 bytes. Dates are represented by dot separated ASCII digits:
  * *DD.MM.YYYY*
 
+== Maximum number of datasets ==
+
+4 bytes are used for IDs, so a practically unlimited number (256^4) of datasets can be stored.
+
 == Characterset ==
 
 Strings is standard ASCII. Explicit qualifiers, e.g. the gender, are german.

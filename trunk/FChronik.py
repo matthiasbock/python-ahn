@@ -1,60 +1,58 @@
 #! /usr/bin/python
 # -*- coding: iso-8859-15 -*-
 
-string = 0 # string
-date = 1 # date
-binary = 2 # binary
+# field type
+string = 0
+date = 1
+binary = 2
 
-descriptor = 0	# pos in field tuple
+# pos in field tuple
+descriptor = 0
 fieldtype = 1
 length = 2
-alignment = 3
-
-left = 0
-right = 1
 
 Fields = [	
-		("Name", string, 20, left),
-		("Geburtsname", string, 20, left),
-		("Erster Vorname", string, 20, left),
-		("Weitere Vornamen", string, 20, left),
+		("Name", string, 20),
+		("Geburtsname", string, 20),
+		("Erster Vorname", string, 20),
+		("Weitere Vornamen", string, 20),
 
 		# 10 x 0x20
-		("spaces1", string, 10, left),
+		("spaces1", string, 10),
 
-		("geboren am", date, 10, None),
-		("geboren in", string, 30, left),
+		("geboren am", date, 10),
+		("geboren in", string, 30),
 
-		("getauft am", date, 10, None),
-		("getauft in", string, 30, left),
+		("getauft am", date, 10),
+		("getauft in", string, 30),
 
-		("Geschlecht", string, 8, left),
-		("Konfession", string, 12, left),
-		("Beruf", string, 39, left),
+		("Geschlecht", string, 8),
+		("Konfession", string, 12),
+		("Beruf", string, 39),
 
-		("gestorben am", date, 10, None),
-		("gestorben in", string, 30, left),
+		("gestorben am", date, 10),
+		("gestorben in", string, 30),
 
-		("Alter", string, 15, left),
+		("Alter", string, 15),
 
-		("beerdigt am", date, 10, None),
-		("beerdigt in", string, 30, left),
+		("beerdigt am", date, 10),
+		("beerdigt in", string, 30),
 
 		# 300 x 0x20
-		("spaces2", string, 300, left),
+		("spaces2", string, 300),
 
-		("binary1", binary, 12, right),
+		("binary1", binary, 12),
 
-		("Hochzeit am", date, 10, None),
-		("Hochzeit in", string, 30, left),
+		("Hochzeit am", date, 10),
+		("Hochzeit in", string, 30),
 
-		("binary2", binary, 76, right),
-		("string1", string, 40, left),
-		("binary3", binary, 76, right),
-		("string2", string, 40, left),
-		("binary4", binary, 76, right),
-		("string3", string, 38, left),
-		("binary5", binary, 74, right)
+		("binary2", binary, 76),
+		("string1", string, 40),
+		("binary3", binary, 76),
+		("string2", string, 40),
+		("binary4", binary, 76),
+		("string3", string, 38),
+		("binary5", binary, 74)
 	]
 
 class dataset:
@@ -75,14 +73,9 @@ class dataset:
 		for i in range(0, len(Fields)):
 			value = self.fields[i][1]
 			if Fields[i][fieldtype] == binary:
-				value = chr(value)+chr(0)
-				justify_with = chr(0)
+				value = (chr(value)+chr(0)).rjust(Fields[i][length], chr(0))
 			elif Fields[i][fieldtype] == string:
-				justify_with = chr(0x20)
-			if Fields[i][alignment] == right:
-				value = value.rjust(Fields[i][length], justify_with)
-			elif Fields[i][alignment] == left:
-				value = value.ljust(Fields[i][length], justify_with)
+				value = value.ljust(Fields[i][length], chr(0x20))
 			result += value
 		return result
 
@@ -97,7 +90,7 @@ class ahn:
 		if filename is not None:
 			self.load(filename, show)
 
-	def load(self, filename, show=False):
+	def load(self, filename, show=False, debug=False):
 		f = open(filename)
 		self.header = f.read(4)		# magic
 		d = f.read(1100)
@@ -106,12 +99,11 @@ class ahn:
 			self.datasets.append( x )
 			if show:
 				print x.fields
-				print d
-				print str(len(d))
-				reexported = x.export()
-				print reexported
-				print str(len(reexported))
-				print
+			if debug:
+				if d == x.export():
+					print "input and export are identical"
+				else:
+					print "input and export differ"
 			d = f.read(1100)
 		f.close()
 

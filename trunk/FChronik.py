@@ -4,16 +4,17 @@
 #from time import strptime
 
 # field type
-string = 0
-date = 1
-binary = 2
+string = "string"
+date = "date"
+integer = "integer"
 
 # pos in field tuple
 descriptor = 0
 fieldtype = 1
 length = 2
 
-Fields = [	
+Fields = [
+		("ID", integer, 4),
 		("Name", string, 20),
 		("Geburtsname", string, 20),
 		("Erster Vorname", string, 20),
@@ -40,26 +41,44 @@ Fields = [
 		("beerdigt am", date, 10),
 		("beerdigt in", string, 30),
 
-		# 300 x 0x20
-		("spaces2", string, 300),
+		("Notizen", string, 300),
 
-		("Vater", binary, 12),
-
-		("Hochzeit am", date, 10),
-		("Hochzeit in", string, 30),
-
-		("Kinder", binary, 76),
-		("string1", string, 40),
-		("binary3", binary, 76),
-		("string2", string, 40),
-		("binary4", binary, 76),
-		("string3", string, 38),
-		("Geschwister", binary, 74)
+		("Vater", integer, 4),
+		("Mutter", integer, 4),
 	]
 
+for Ehe in range(0,4):				# 4 marriages possible
+	Nr = str(Ehe+1)+"."
+	Fields += [
+		(Nr+" Ehepartner", integer, 4),
+		(Nr+" Hochzeit am", date, 10)
+		]
+	if Ehe+1 != 4:				# fix for a bug in the Data Becker Familienchronik
+		Fields.append( (Nr+" Hochzeit in", string, 30) )
+	else:
+		Fields.append( (Nr+" Hochzeit in", string, 28) )
+		Fields.append( ("bug", integer, 2) )
+	for i in range(0,18):			# 18 children per marriage
+		Fields.append( ("Kind "+str(i+1)+" aus Ehe "+str(Ehe+1), integer, 4) )
+
+def str2int(s):
+	result = 0
+	shift = 0
+	for i in range(0,len(s)):
+		result += ord(s[i]) << shift
+		shift += 8
+	return result
+
+def int2str(i):
+	result = ""
+	for j in range(0,4):
+		result += chr(i & 255)
+		i = i >> 8
+	return result
+
 class dataset:
-	def __init__(self, data, ID):
-		self.fields = {"ID":ID}
+	def __init__(self, data):
+		self.fields = {}
 		p = 0
 		for field in Fields:
 			value = data[ p : p+field[length] ]
@@ -67,9 +86,9 @@ class dataset:
 				value = value.strip()				# remove whitespace
 #			if field[fieldtype] == date and value != "":
 #				value = strptime(value, "%d.%m.%Y")
-			if field[fieldtype] == binary:
-				value = ord(value[0])+(ord(value[1])*256)	# convert to number
-			if value != "" and value != 0:
+			if field[fieldtype] == integer:
+				value = str2int(value)				# convert to number
+			if value != "" and value != 0 and field[descriptor] != "bug":
 				self.fields[ field[descriptor] ] = value
 			p += field[length]
 
@@ -80,12 +99,12 @@ class dataset:
 			if key in self.fields.keys():			# value exists
 				value = self.fields[key]
 			else:						# empty
-				if field[fieldtype] == binary:
+				if field[fieldtype] == integer:
 					value = 0
 				elif field[fieldtype] == string:
 					value = ""
-			if field[fieldtype] == binary:
-				value = (chr(value)+chr(0)).rjust(field[length], chr(0))
+			if field[fieldtype] == integer:
+				value = int2str(value)
 			elif field[fieldtype] == string:
 				value = value.ljust(field[length], chr(0x20))
 			result += value
@@ -97,20 +116,16 @@ class dataset:
 
 class ahn:
 	def __init__(self, filename=None, show=False):
-		self.header = chr(1)+chr(0)+chr(0)+chr(0)
 		self.datasets = []
 		if filename is not None:
 			self.load(filename, show)
 
 	def load(self, filename, show=False, debug=False):
 		f = open(filename)
-		self.header = f.read(4)		# magic
 		d = f.read(1100)
-		ID = 1
 		while d:
-			x = dataset(d, ID)
+			x = dataset(d)
 			self.datasets.append( x )
-			ID += 1
 			if show:
 				print x.fields
 				print
@@ -124,7 +139,6 @@ class ahn:
 
 	def saveto(self, filename):
 		f = open(filename, "w")
-		f.write(self.header)
 		for dataset in self.datasets:
 			f.write(dataset.export())
 		f.close()

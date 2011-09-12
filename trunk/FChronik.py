@@ -18,10 +18,7 @@ Fields = [
 		("Name", string, 20),
 		("Geburtsname", string, 20),
 		("Erster Vorname", string, 20),
-		("Weitere Vornamen", string, 20),
-
-		# 10 x 0x20
-		("spaces1", string, 10),
+		("Weitere Vornamen", string, 30),
 
 		("geboren am", date, 10),
 		("geboren in", string, 30),
@@ -69,9 +66,9 @@ def str2int(s):
 		shift += 8
 	return result
 
-def int2str(i):
+def int2str(i, length):
 	result = ""
-	for j in range(0,4):
+	for j in range(0,length):
 		result += chr(i & 255)
 		i = i >> 8
 	return result
@@ -104,7 +101,7 @@ class dataset:
 				elif field[fieldtype] == string:
 					value = ""
 			if field[fieldtype] == integer:
-				value = int2str(value)
+				value = int2str(value, field[length])
 			elif field[fieldtype] == string:
 				value = value.ljust(field[length], chr(0x20))
 			result += value
@@ -138,6 +135,7 @@ class ahn:
 		f.close()
 
 	def saveto(self, filename):
+		print Fields
 		f = open(filename, "w")
 		for dataset in self.datasets:
 			f.write(dataset.export())

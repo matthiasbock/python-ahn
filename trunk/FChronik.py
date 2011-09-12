@@ -112,12 +112,12 @@ class dataset:
 		return ()
 
 class ahn:
-	def __init__(self, filename=None, show=False):
+	def __init__(self, filename=None, show=False, compare=False):
 		self.datasets = []
 		if filename is not None:
-			self.load(filename, show)
+			self.load(filename, show, compare)
 
-	def load(self, filename, show=False, debug=False):
+	def load(self, filename, show=False, compare=False):
 		f = open(filename)
 		d = f.read(1100)
 		while d:
@@ -126,16 +126,18 @@ class ahn:
 			if show:
 				print x.fields
 				print
-			if debug:
-				if d == x.export():
+			if compare:
+				e = x.export()
+				if d == e:
 					print "input and export are identical"
 				else:
+					print d
+					print e
 					print "input and export differ"
 			d = f.read(1100)
 		f.close()
 
 	def saveto(self, filename):
-		print Fields
 		f = open(filename, "w")
 		for dataset in self.datasets:
 			f.write(dataset.export())

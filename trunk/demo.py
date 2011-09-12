@@ -3,7 +3,7 @@
 
 import FChronik, Ahnenblatt
 
-weber = FChronik.ahn("FChronik/Beispiel.ahn", show=True)
+weber = FChronik.ahn("FChronik/Beispiel.ahn", compare=True)
 
 print str(len(weber.datasets))+" datasets"
 

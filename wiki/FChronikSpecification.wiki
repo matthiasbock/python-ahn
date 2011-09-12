@@ -20,7 +20,7 @@ A field can be one of the three field types:
 Strings smaller than their appropriate field length are padded right with spaces:
  * <0x20>
 
-In analogous manner, binary encoded information is padded with zeroes:
+In analogous manner, binary encoded information is padded left with zeroes:
  * <0x00>
 
 Each field of the date type has a length of 10 bytes. Dates are represented by dot separated ASCII digits:

@@ -1,6 +1,8 @@
 #! /usr/bin/python
 # -*- coding: iso-8859-15 -*-
 
+#from time import strptime
+
 # field type
 string = 0
 date = 1
@@ -41,41 +43,51 @@ Fields = [
 		# 300 x 0x20
 		("spaces2", string, 300),
 
-		("binary1", binary, 12),
+		("Vater", binary, 12),
 
 		("Hochzeit am", date, 10),
 		("Hochzeit in", string, 30),
 
-		("binary2", binary, 76),
+		("Kinder", binary, 76),
 		("string1", string, 40),
 		("binary3", binary, 76),
 		("string2", string, 40),
 		("binary4", binary, 76),
 		("string3", string, 38),
-		("binary5", binary, 74)
+		("Geschwister", binary, 74)
 	]
 
 class dataset:
-	def __init__(self, data):
-		self.fields = []
+	def __init__(self, data, ID):
+		self.fields = {"ID":ID}
 		p = 0
 		for field in Fields:
 			value = data[ p : p+field[length] ]
-			if field[fieldtype] == string:
-				value = value.strip()
-			elif field[fieldtype] == binary:
-				value = ord(value[0])+(ord(value[1])*256)
-			self.fields.append( (field[descriptor], value) )
+			if field[fieldtype] in [string, date]:
+				value = value.strip()				# remove whitespace
+#			if field[fieldtype] == date and value != "":
+#				value = strptime(value, "%d.%m.%Y")
+			if field[fieldtype] == binary:
+				value = ord(value[0])+(ord(value[1])*256)	# convert to number
+			if value != "" and value != 0:
+				self.fields[ field[descriptor] ] = value
 			p += field[length]
 
 	def export(self):
 		result = ""
-		for i in range(0, len(Fields)):
-			value = self.fields[i][1]
-			if Fields[i][fieldtype] == binary:
-				value = (chr(value)+chr(0)).rjust(Fields[i][length], chr(0))
-			elif Fields[i][fieldtype] == string:
-				value = value.ljust(Fields[i][length], chr(0x20))
+		for field in Fields:
+			key = field[descriptor]
+			if key in self.fields.keys():			# value exists
+				value = self.fields[key]
+			else:						# empty
+				if field[fieldtype] == binary:
+					value = 0
+				elif field[fieldtype] == string:
+					value = ""
+			if field[fieldtype] == binary:
+				value = (chr(value)+chr(0)).rjust(field[length], chr(0))
+			elif field[fieldtype] == string:
+				value = value.ljust(field[length], chr(0x20))
 			result += value
 		return result
 
@@ -94,11 +106,14 @@ class ahn:
 		f = open(filename)
 		self.header = f.read(4)		# magic
 		d = f.read(1100)
+		ID = 1
 		while d:
-			x = dataset(d)
+			x = dataset(d, ID)
 			self.datasets.append( x )
+			ID += 1
 			if show:
 				print x.fields
+				print
 			if debug:
 				if d == x.export():
 					print "input and export are identical"

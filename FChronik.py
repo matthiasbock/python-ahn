@@ -44,31 +44,35 @@ Fields = [
 		("Mutter", integer, 4),
 	]
 
-for Ehe in range(0,4):				# 4 marriages possible
-	Nr = str(Ehe+1)+"."
+Format_Bug = "bug"
+
+for Ehe in range(0,4):						# 4 marriages possible
+	Nr = str(Ehe+1)+". "
 	Fields += [
-		(Nr+" Ehepartner", integer, 4),
-		(Nr+" Hochzeit am", date, 10)
+		(Nr+"Ehepartner", integer, 4),
+		(Nr+"Hochzeit am", date, 10)
 		]
-	if Ehe+1 != 4:				# fix for a bug in the Data Becker Familienchronik
-		Fields.append( (Nr+" Hochzeit in", string, 30) )
+
+	if Ehe+1 <= 3:						# Format_Bug, see Wiki
+		Fields.append( (Nr+"Hochzeit in", string, 30) )	# 1.-3.
 	else:
-		Fields.append( (Nr+" Hochzeit in", string, 28) )
-		Fields.append( ("bug", integer, 2) )
-	for i in range(0,18):			# 18 children per marriage
-		Fields.append( ("Kind "+str(i+1)+" aus Ehe "+str(Ehe+1), integer, 4) )
+		Fields.append( (Nr+"Hochzeit in", string, 28) ) # 4.
+		Fields.append( (Format_Bug, integer, 2) )
+
+	for i in range(0,18):					# 18 children per marriage
+		Fields.append( (str(i+1)+". Kind aus "+str(Ehe+1)+". Ehe", integer, 4) )
 
 def str2int(s):
 	result = 0
 	shift = 0
 	for i in range(0,len(s)):
-		result += ord(s[i]) << shift
+		result += (ord(s[i]) << shift)
 		shift += 8
 	return result
 
 def int2str(i, length):
 	result = ""
-	for j in range(0,length):
+	for j in range(0, length):
 		result += chr(i & 255)
 		i = i >> 8
 	return result
@@ -76,69 +80,71 @@ def int2str(i, length):
 class dataset:
 	def __init__(self, data):
 		self.fields = {}
-		p = 0
-		for field in Fields:
-			value = data[ p : p+field[length] ]
-			if field[fieldtype] in [string, date]:
-				value = value.strip()				# remove whitespace
-#			if field[fieldtype] == date and value != "":
+		position = 0
+		for field in Fields:							# for all Fields
+			q = position+field[length]
+			value = data[position:q]
+			position = q
+			if field[fieldtype] in [string, date]:				# remove whitespace
+				value = value.strip()
+#			if field[fieldtype] == date and value != "":			# convert to date
 #				value = strptime(value, "%d.%m.%Y")
-			if field[fieldtype] == integer:
-				value = str2int(value)				# convert to number
-			if value != "" and value != 0 and field[descriptor] != "bug":
-				self.fields[ field[descriptor] ] = value
-			p += field[length]
+			if field[fieldtype] == integer:					# convert to integer
+				value = str2int(value)
+			if value != "" and value != 0:
+				self.fields[ field[descriptor] ] = value		# save acquired info to python class
 
 	def export(self):
 		result = ""
-		for field in Fields:
+		for field in Fields:							# for all Fields
 			key = field[descriptor]
-			if key in self.fields.keys():			# value exists
+			if key in self.fields.keys():					# info is present
 				value = self.fields[key]
-			else:						# empty
-				if field[fieldtype] == integer:
+			else:								# info is not present
+				value = ""
+				if field[fieldtype] == integer:				# ... defaults
 					value = 0
-				elif field[fieldtype] == string:
-					value = ""
 			if field[fieldtype] == integer:
-				value = int2str(value, field[length])
-			elif field[fieldtype] == string:
+				value = int2str(value, field[length])			# convert properly
+			elif field[fieldtype] in [string, date]:
 				value = value.ljust(field[length], chr(0x20))
-			result += value
+			result += value							# export
 		return result
 
-	def exportAhnenblatt(self):
-		# blabla
-		return ()
-
 class ahn:
-	def __init__(self, filename=None, show=False, compare=False):
+	def __init__(self, filename=None, debug=False, compare_import_export=False):
 		self.datasets = []
 		if filename is not None:
-			self.load(filename, show, compare)
+			self.load(filename, debug, compare_import_export)
 
-	def load(self, filename, show=False, compare=False):
+	def load(self, filename, debug=False, compare_import_export=False):
 		f = open(filename)
-		d = f.read(1100)
-		while d:
-			x = dataset(d)
-			self.datasets.append( x )
-			if show:
-				print x.fields
-				print
-			if compare:
-				e = x.export()
-				if d == e:
-					print "input and export are identical"
+		data = f.read(1100)						# read file
+		while data:
+			d = dataset(data)					# append new instance of class dataset
+			self.datasets.append(d)
+			if debug:
+				print d.fields					# print dataset
+			if compare_import_export:				# compare import and dataset export
+				exported = d.export()
+				if data == exported:
+					print "Import and Export are identical."
 				else:
-					print d
-					print e
-					print "input and export differ"
-			d = f.read(1100)
+					print "Import and Export differ:"
+					print str(len(data))+" characters"
+					print data.replace(" ","_")
+					print str(len(exported))+" characters"
+					print exported.replace(" ","_")
+					for i in range(0,len(data)):
+						if data[i] != exported[i]:
+							print "Character No. "+str(i)+" differs:"
+							print "\timport: "+str(ord(data[i]))
+							print "\texport: "+str(ord(exported[i]))
+			data = f.read(1100)
 		f.close()
 
 	def saveto(self, filename):
-		f = open(filename, "w")
+		f = open(filename, "w")						# write to file
 		for dataset in self.datasets:
 			f.write(dataset.export())
 		f.close()

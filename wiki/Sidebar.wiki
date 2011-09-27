@@ -2,6 +2,7 @@
  * Data Becker's FChronik
    * [FChronikScreenshots Screenshots]
    * [FChronikSpecification File Format Specification]
+   * [FChronikFormatBug Format Bug]
  * Dirk Böttcher's Ahnenblatt
    * [AhnenblattScreenshots Screenshots]
    * [AhnenblattSpecification File Format Specification]

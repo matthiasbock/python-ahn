@@ -1,0 +1,219 @@
+<?xml version="1.0" ?>
+<resource>
+  <object class="wxFrame" name="HEREDIS2GEDCOM_FRAME">
+    <title>Heredis2Gedcom</title>
+    <object class="wxPanel">
+      <object class="wxFlexGridSizer">
+        <object class="sizeritem">
+          <object class="wxFlexGridSizer">
+            <cols>3</cols>
+            <rows>3</rows>
+            <object class="sizeritem">
+              <object class="wxStaticText">
+                <label>Fichier Heredis : </label>
+              </object>
+              <flag>wxALIGN_CENTRE_VERTICAL</flag>
+            </object>
+            <object class="sizeritem">
+              <object class="wxTextCtrl" name="HEREDIS_FILENAME"/>
+              <flag>wxALL|wxEXPAND|wxGROW</flag>
+            </object>
+            <object class="sizeritem">
+              <object class="wxButton" name="HEREDIS_BUTTON">
+                <label>fichier...</label>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <object class="wxStaticText" name="">
+                <label>Fichier Gedcom : </label>
+              </object>
+              <flag>wxALIGN_CENTRE_VERTICAL</flag>
+            </object>
+            <object class="sizeritem">
+              <object class="wxTextCtrl" name="GEDCOM_FILENAME"/>
+              <flag>wxALL|wxEXPAND|wxGROW</flag>
+            </object>
+            <object class="sizeritem">
+              <object class="wxButton" name="GEDCOM_BUTTON">
+                <label>fichier...</label>
+              </object>
+            </object>
+            <growablecols>1</growablecols>
+            <object class="sizeritem">
+              <object class="wxStaticText">
+                <label>Repertoire des medias : </label>
+              </object>
+              <flag>wxALIGN_CENTRE_VERTICAL</flag>
+            </object>
+            <object class="sizeritem">
+              <object class="wxTextCtrl" name="MEDIA_DIRECTORY"/>
+              <flag>wxALL|wxEXPAND|wxGROW</flag>
+            </object>
+            <object class="sizeritem">
+              <object class="wxButton" name="MEDIA_BUTTON">
+                <label>repertoire...</label>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <object class="wxStaticText">
+                <label>Note : </label>
+              </object>
+              <flag>wxALIGN_CENTRE_VERTICAL</flag>
+            </object>
+            <object class="sizeritem">
+              <object class="wxComboBox" name="NOTETYPE">
+                <content>
+                  <item>rtf</item>
+                  <item>html</item>
+                  <item>texte brut</item>
+                </content>
+                <selection>2</selection>
+                <style>wxCB_READONLY|wxCB_DROPDOWN</style>
+              </object>
+            </object>
+            <object class="spacer">
+              <size>0,0</size>
+            </object>
+            <object class="sizeritem">
+              <object class="wxStaticText">
+                <label>Format des caracteres : </label>
+              </object>
+              <flag>wxALIGN_CENTRE_VERTICAL</flag>
+            </object>
+            <object class="sizeritem">
+              <object class="wxComboBox" name="CHARCODE">
+                <content>
+                  <item>cp1252</item>
+                  <item>Ascii</item>
+                  <item>utf16</item>
+                  <item>utf8</item>
+                  <item>Dos</item>
+                </content>
+                <selection>3</selection>
+                <style>wxCB_DROPDOWN|wxCB_READONLY</style>
+              </object>
+            </object>
+            <object class="spacer">
+              <size>0,0</size>
+            </object>
+            <object class="sizeritem">
+              <object class="wxStaticText">
+                <label>type d'export des medias : </label>
+              </object>
+              <flag>wxALIGN_CENTRE_VERTICAL</flag>
+            </object>
+            <object class="sizeritem">
+              <object class="wxComboBox" name="MEDIAEXPORT">
+                <content>
+                  <item>STANDARD</item>
+                  <item>INLINE</item>
+                  <item>EVENT</item>
+                </content>
+                <selection>0</selection>
+                <style>wxCB_READONLY|wxCB_DROPDOWN</style>
+              </object>
+            </object>
+            <object class="spacer">
+              <size>0,0</size>
+            </object>
+            <object class="sizeritem">
+              <object class="wxStaticText">
+                <label>tyoe d'export des associations : </label>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <object class="wxComboBox" name="ASSOEXPORT">
+                <content>
+                  <item>standard</item>
+                  <item>au niveau individu</item>
+                </content>
+                <selection>0</selection>
+              </object>
+            </object>
+            <object class="spacer"/>
+          </object>
+          <flag>wxALL|wxEXPAND|wxGROW</flag>
+        </object>
+        <object class="sizeritem">
+          <object class="wxFlexGridSizer">
+            <cols>1</cols>
+            <rows>2</rows>
+            <object class="sizeritem">
+              <object class="wxCheckBox" name="INDENT">
+                <label>indenter le fichier (pour  debug  uniquement)</label>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <object class="wxCheckBox" name="PRIVATE">
+                <label>n'exporter que les noms et prenoms des individus confidentiels</label>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <object class="wxCheckBox" name="CALENDARDATE">
+                <label>indique si l'on doit exporter le calendrier @#DGREGORIAN@ pour les dates en gregorien</label>
+                <checked>0</checked>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <object class="wxCheckBox" name="CHANGEDATE">
+                <label>indique si l'on ne doit indiquer les dates de modifications qu'au premier niveau</label>
+                <checked>1</checked>
+              </object>
+            </object>
+          </object>
+        </object>
+        <object class="sizeritem">
+          <object class="wxFlexGridSizer">
+            <cols>1</cols>
+            <rows>1</rows>
+            <object class="sizeritem">
+              <object class="wxTextCtrl" name="OUTPUT">
+                <style>wxTE_MULTILINE</style>
+              </object>
+              <flag>wxALL|wxEXPAND|wxGROW</flag>
+            </object>
+            <growablecols>0</growablecols>
+            <growablerows>0</growablerows>
+          </object>
+          <flag>wxALL|wxEXPAND|wxGROW</flag>
+        </object>
+        <cols>1</cols>
+        <rows>4</rows>
+        <growablerows>2</growablerows>
+        <growablecols>0</growablecols>
+        <object class="sizeritem">
+          <object class="wxFlexGridSizer">
+            <cols>3</cols>
+            <rows>1</rows>
+            <object class="sizeritem">
+              <object class="wxButton" name="QUIT_BUTTON">
+                <label>Quitter</label>
+              </object>
+              <flag>wxALL|wxEXPAND|wxGROW</flag>
+              <border>5</border>
+            </object>
+            <object class="sizeritem">
+              <object class="wxButton" name="GO_BUTTON">
+                <label>Transcoder</label>
+              </object>
+              <flag>wxALL|wxEXPAND|wxGROW</flag>
+              <border>5</border>
+            </object>
+            <vgap>10</vgap>
+            <hgap>9</hgap>
+            <growablecols>0</growablecols>
+            <growablecols>1</growablecols>
+            <object class="sizeritem">
+              <object class="wxButton" name="SEE_BUTTON">
+                <label>Visualiser le gedcom</label>
+              </object>
+              <flag>wxALL|wxEXPAND|wxGROW</flag>
+              <border>5</border>
+            </object>
+          </object>
+          <flag>wxALIGN_CENTRE_VERTICAL|wxALIGN_CENTRE_HORIZONTAL</flag>
+        </object>
+      </object>
+    </object>
+  </object>
+</resource>

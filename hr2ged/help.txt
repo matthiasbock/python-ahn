@@ -1,0 +1,19 @@
+Vous devez au moins spécifier le fichier Heredis !
+
+Par défaut, le fichier Gedcom est dans le même répertoire que le fichier heredis et se nomme pareil mais avec l'extension "ged".
+
+Le répertoire média n'est utile que lorsque l'on veut rendre le repertoire des médias relatifs ou différents de la réalité. Par exemple, pour un export en vue d'une publication web, on pourra par exemple indiquer "photos" ou encore "/images".
+
+Le type des notes est aussi important. En effet, Heredis enregistre celle-ci sous la forme rtf (Rich Text Format). Mais rare sont les programmes qui utilisent ce format là donc vous pouvez choisir « texte brut » ou encore HTML (dit aussi Web).
+
+Le format des caractères est aussi important. On retrouve les mêmes options que sous Heredis...
+
+On peut aussi indenter le fichier gedcom afin qu'il soit plus facilement lisible par un humain. Néanmoins n'utilisez pas cette option si vous voulez respecter le standard Gedcom.
+
+L'option suivante concerne l'export des personnes marquées comme confidentielles. On peut choisir de n'exporter que les nom et prénoms de celles-ci.
+
+On a enfin le choix du type d'export pour les medias. Soit on utilise un pointeur vers un OBJE; soit on insere directement un OBJE; soit on utilise un evenement (comme généatique).
+
+Enfin appuyez sur le bouton "Transcoder" et attendez le message de fin !
+
+Pour tout problème, envoyez un message à loic@fejoz.net

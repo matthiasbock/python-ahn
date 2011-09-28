@@ -14,14 +14,4 @@ Project started in October 1999. Python binding started 6th of September 2011.
  * saving to Ahnenblatt.ahn
  * converting FChronik to Ahnenblatt & vice-versa
  * saving to CSV (using python)
- * saving to GEDCOM
-
-----
-
-= Support for other genealogy software =
-
-== Heredis ==
-
-Python bindings for Heredis are already available:
- * http://sourceforge.net/projects/hrlib/
- * http://sourceforge.net/projects/hr2ged/
+ * internal format: GEDCOM

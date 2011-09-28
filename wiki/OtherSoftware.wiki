@@ -6,7 +6,7 @@
 
 == Heredis ==
 
-Python bindings for Heredis' format are already available:
+Python bindings for Heredis' format are available:
  * http://sourceforge.net/projects/hrlib/
  * http://sourceforge.net/projects/hr2ged/
 
